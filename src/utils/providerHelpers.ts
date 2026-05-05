@@ -5,23 +5,29 @@ import {
 } from '@mui/icons-material'
 
 export const getProviderIcon = (providerType: string) => {
-  switch (providerType) {
-    case 'microsoft':
-      return MicrosoftIcon
-    case 'blessingskin':
-      return PersonIcon
-    default:
-      return LoginIcon
+  if (providerType === 'microsoft') {
+    return MicrosoftIcon
   }
+
+  if (providerType === 'littleskin') {
+    return PersonIcon
+  }
+
+  if (providerType.startsWith('blessingskin=') || providerType.startsWith('bs=')) {
+    return PersonIcon
+  }
+
+  return LoginIcon
 }
 
 export const getProviderColor = (providerType: string): "primary" | "secondary" | "success" | "info" => {
-  switch (providerType) {
-    case 'microsoft':
-      return 'info'
-    case 'blessingskin':
-      return 'primary'
-    default:
-      return 'primary'
+  if (providerType === 'microsoft') {
+    return 'info'
   }
+
+  if (providerType === 'littleskin') {
+    return 'success'
+  }
+
+  return 'primary'
 }
