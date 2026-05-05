@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import App from './App.tsx'
 
-// 创建深色主题
+// Create the application theme
 const darkTheme = createTheme({
   palette: {
     mode: 'light',
