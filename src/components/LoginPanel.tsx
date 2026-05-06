@@ -10,6 +10,7 @@ import {
   Divider,
 } from '@mui/material'
 import { Person as PersonIcon } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 import type { OAuthProvider } from '../types'
 import { getProviderIcon, getProviderColor } from '../utils/providerHelpers'
 
@@ -19,6 +20,8 @@ interface LoginPanelProps {
 }
 
 export const LoginPanel = ({ providers, onLogin }: LoginPanelProps) => {
+  const { t } = useTranslation()
+
   return (
     <Card sx={{ maxWidth: 600, width: '100%' }}>
       <CardContent>
@@ -27,7 +30,7 @@ export const LoginPanel = ({ providers, onLogin }: LoginPanelProps) => {
             <PersonIcon sx={{ fontSize: 50 }} />
           </Avatar>
           <Typography variant="h6" color="text.secondary" align="center">
-            请选择一个方式登录以查看你的 Minecraft 角色信息
+            {t('login.description')}
           </Typography>
 
           {providers.length > 0 ? (
@@ -49,14 +52,14 @@ export const LoginPanel = ({ providers, onLogin }: LoginPanelProps) => {
                       textTransform: 'none',
                     }}
                   >
-                    使用 {provider.display_name} 登录
+                    {t('login.button', { provider: provider.display_name })}
                   </Button>
                 )
               })}
             </Stack>
           ) : (
             <Alert severity="warning" sx={{ mt: 2 }}>
-              暂无可用的登录方式，请联系管理员配置
+              {t('login.unavailable')}
             </Alert>
           )}
 
@@ -64,7 +67,7 @@ export const LoginPanel = ({ providers, onLogin }: LoginPanelProps) => {
             <Box width="100%" px={2}>
               <Divider sx={{ my: 2 }}>
                 <Typography variant="caption" color="text.secondary">
-                  选择任意一种登录方式
+                  {t('login.divider')}
                 </Typography>
               </Divider>
             </Box>

@@ -12,6 +12,7 @@ import {
   Typography,
 } from '@mui/material'
 import { CloudUpload as CloudUploadIcon, CheckCircleOutline as CheckCircleOutlineIcon } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 import type { YggdrasilProfile, YsmUploadResult } from '../types'
 
 interface YsmUploadPanelProps {
@@ -19,6 +20,7 @@ interface YsmUploadPanelProps {
 }
 
 export const YsmUploadPanel = ({ profiles }: YsmUploadPanelProps) => {
+  const { t } = useTranslation()
   const initialProfileUuid = profiles[0]?.id ?? ''
   const [profileUuid, setProfileUuid] = useState(initialProfileUuid)
   const [file, setFile] = useState<File | null>(null)
@@ -79,13 +81,13 @@ export const YsmUploadPanel = ({ profiles }: YsmUploadPanelProps) => {
             ? data
             : typeof data === 'object' && data !== null && 'message' in data && typeof data.message === 'string'
               ? data.message
-              : text || '上传失败'
+              : text || t('upload.uploadFailed')
         throw new Error(errorMessage)
       }
 
       setResult(data as YsmUploadResult)
     } catch (err) {
-      setError(err instanceof Error ? err.message : '上传失败')
+      setError(err instanceof Error ? err.message : t('upload.uploadFailed'))
     } finally {
       setSubmitting(false)
     }
@@ -96,15 +98,15 @@ export const YsmUploadPanel = ({ profiles }: YsmUploadPanelProps) => {
       <CardContent>
         <Stack spacing={2.5}>
           <Box>
-            <Typography variant="h6">上传 YSM 模型并授权</Typography>
+            <Typography variant="h6">{t('upload.title')}</Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-              模型会上传到服务端的 auth 目录，随后执行模型重载和所选角色授权。
+              {t('upload.description')}
             </Typography>
           </Box>
 
           <TextField
             select
-            label="授权角色"
+            label={t('upload.profileLabel')}
             value={profileUuid}
             onChange={(event) => {
               setProfileUuid(event.target.value)
@@ -121,11 +123,11 @@ export const YsmUploadPanel = ({ profiles }: YsmUploadPanelProps) => {
 
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ xs: 'stretch', sm: 'center' }}>
             <Button component="label" variant="outlined" startIcon={<CloudUploadIcon />}>
-              选择模型文件
+              {t('upload.selectFile')}
               <input hidden type="file" accept=".ysm,.zip,.7z" onChange={handleFileChange} />
             </Button>
             <Typography variant="body2" color="text.secondary">
-              {file ? `已选择: ${file.name}` : '支持 .ysm、.zip、.7z 单文件模型；服务端会按文件内容生成模型 ID'}
+              {file ? t('upload.fileSelected', { name: file.name }) : t('upload.fileHint')}
             </Typography>
           </Stack>
 
@@ -137,7 +139,7 @@ export const YsmUploadPanel = ({ profiles }: YsmUploadPanelProps) => {
               disabled={!canSubmit}
               startIcon={submitting ? <CircularProgress size={18} color="inherit" /> : <CheckCircleOutlineIcon />}
             >
-              {submitting ? '上传并授权中...' : '上传并授权'}
+              {submitting ? t('upload.submitting') : t('upload.submit')}
             </Button>
           </Box>
 
@@ -146,11 +148,11 @@ export const YsmUploadPanel = ({ profiles }: YsmUploadPanelProps) => {
           {result && (
             <Alert severity="success">
               <Stack spacing={0.5}>
-                <Typography variant="body2">已为 {result.profile_name} 上传并授权模型 {result.model_id}</Typography>
-                <Typography variant="body2" color="text.secondary">文件: {result.stored_file_name}</Typography>
-                <Typography variant="body2" color="text.secondary">目录: {result.upload_dir}</Typography>
-                <Typography variant="body2" color="text.secondary">重载: {result.reload_command}</Typography>
-                <Typography variant="body2" color="text.secondary">授权: {result.authorize_command}</Typography>
+                <Typography variant="body2">{t('upload.success', { profileName: result.profile_name, modelId: result.model_id })}</Typography>
+                <Typography variant="body2" color="text.secondary">{t('upload.storedFile', { fileName: result.stored_file_name })}</Typography>
+                <Typography variant="body2" color="text.secondary">{t('upload.uploadDir', { dir: result.upload_dir })}</Typography>
+                <Typography variant="body2" color="text.secondary">{t('upload.reloadCommand', { command: result.reload_command })}</Typography>
+                <Typography variant="body2" color="text.secondary">{t('upload.authorizeCommand', { command: result.authorize_command })}</Typography>
               </Stack>
             </Alert>
           )}

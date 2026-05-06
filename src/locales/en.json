@@ -1,0 +1,44 @@
+{
+  "app": {
+    "title": "Yes Steve Model Skin Upload",
+    "documentTitle": "YSM Upload"
+  },
+  "loading": {
+    "message": "Loading..."
+  },
+  "login": {
+    "description": "Choose a sign-in method to view your Minecraft profile information.",
+    "button": "Sign in with {{provider}}",
+    "unavailable": "No sign-in methods are available. Ask the administrator to configure one.",
+    "divider": "Choose any available sign-in method"
+  },
+  "profile": {
+    "welcome": "Welcome, {{nickname}}!",
+    "premiumVerified": "LittleSkin premium verified",
+    "premiumUnverified": "LittleSkin premium verification pending",
+    "premiumUuid": "Premium UUID: {{uuid}}",
+    "noPlayers": "You have not added any Minecraft profiles yet.",
+    "logout": "Sign out"
+  },
+  "players": {
+    "title": "Your Minecraft profiles:",
+    "name": "Player Name",
+    "uuid": "UUID"
+  },
+  "upload": {
+    "title": "Upload a YSM model and authorize it",
+    "description": "The model will be uploaded to the server auth directory, then reloaded and authorized for the selected profile.",
+    "profileLabel": "Authorized profile",
+    "selectFile": "Select model file",
+    "fileSelected": "Selected: {{name}}",
+    "fileHint": "Supports single-file .ysm, .zip, and .7z models. The server generates the model ID from the uploaded content.",
+    "submit": "Upload and authorize",
+    "submitting": "Uploading and authorizing...",
+    "uploadFailed": "Upload failed",
+    "success": "Uploaded and authorized model {{modelId}} for {{profileName}}.",
+    "storedFile": "File: {{fileName}}",
+    "uploadDir": "Directory: {{dir}}",
+    "reloadCommand": "Reload: {{command}}",
+    "authorizeCommand": "Authorize: {{command}}"
+  }
+}

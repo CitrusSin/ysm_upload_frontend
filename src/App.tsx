@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { Container, Box, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from './hooks/useAuth'
 import { useProviders } from './hooks/useProviders'
 import { LoadingScreen } from './components/LoadingScreen'
@@ -6,8 +8,13 @@ import { LoginPanel } from './components/LoginPanel'
 import { UserProfile } from './components/UserProfile'
 
 function App() {
+  const { t, i18n } = useTranslation()
   const { user, loading: authLoading, handleLogin, handleLogout } = useAuth()
   const { providers } = useProviders()
+
+  useEffect(() => {
+    document.title = t('app.documentTitle')
+  }, [i18n.resolvedLanguage, t])
 
   if (authLoading) {
     return <LoadingScreen />
@@ -35,7 +42,7 @@ function App() {
             mb: 4,
           }}
         >
-          Minecraft 玩家管理
+          {t('app.title')}
         </Typography>
 
         {user ? (

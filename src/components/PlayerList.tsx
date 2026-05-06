@@ -7,6 +7,7 @@ import {
   Chip,
 } from '@mui/material'
 import { Badge as BadgeIcon } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 import type { YggdrasilProfile } from '../types'
 
 interface PlayerListProps {
@@ -14,10 +15,12 @@ interface PlayerListProps {
 }
 
 export const PlayerList = ({ players }: PlayerListProps) => {
+  const { t } = useTranslation()
+
   return (
     <Box mt={3}>
       <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <BadgeIcon /> 你的 Minecraft 角色:
+        <BadgeIcon /> {t('players.title')}
       </Typography>
       <Stack spacing={2} mt={2}>
         {players.map((player, index) => (
@@ -36,7 +39,7 @@ export const PlayerList = ({ players }: PlayerListProps) => {
               <Stack spacing={1.5}>
                 <Box display="flex" alignItems="center" gap={1}>
                   <Chip
-                    label="玩家名称"
+                    label={t('players.name')}
                     size="small"
                     color="primary"
                     variant="outlined"
@@ -45,7 +48,7 @@ export const PlayerList = ({ players }: PlayerListProps) => {
                 </Box>
                 <Box display="flex" alignItems="center" gap={1}>
                   <Chip
-                    label="UUID"
+                    label={t('players.uuid')}
                     size="small"
                     color="secondary"
                     variant="outlined"

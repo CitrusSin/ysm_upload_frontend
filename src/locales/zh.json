@@ -1,0 +1,44 @@
+{
+  "app": {
+    "title": "Yes Steve Model 皮肤上传",
+    "documentTitle": "YSM 上传"
+  },
+  "loading": {
+    "message": "加载中..."
+  },
+  "login": {
+    "description": "请选择一个方式登录以查看你的 Minecraft 角色信息",
+    "button": "使用 {{provider}} 登录",
+    "unavailable": "暂无可用的登录方式，请联系管理员配置",
+    "divider": "选择任意一种登录方式"
+  },
+  "profile": {
+    "welcome": "欢迎, {{nickname}}!",
+    "premiumVerified": "LittleSkin 正版已验证",
+    "premiumUnverified": "LittleSkin 未完成正版验证",
+    "premiumUuid": "正版 UUID: {{uuid}}",
+    "noPlayers": "你还没有添加 Minecraft 角色",
+    "logout": "退出登录"
+  },
+  "players": {
+    "title": "你的 Minecraft 角色:",
+    "name": "玩家名称",
+    "uuid": "UUID"
+  },
+  "upload": {
+    "title": "上传 YSM 模型并授权",
+    "description": "模型会上传到服务端的 auth 目录，随后执行模型重载和所选角色授权。",
+    "profileLabel": "授权角色",
+    "selectFile": "选择模型文件",
+    "fileSelected": "已选择: {{name}}",
+    "fileHint": "支持 .ysm、.zip、.7z 单文件模型；服务端会按文件内容生成模型 ID",
+    "submit": "上传并授权",
+    "submitting": "上传并授权中...",
+    "uploadFailed": "上传失败",
+    "success": "已为 {{profileName}} 上传并授权模型 {{modelId}}",
+    "storedFile": "文件: {{fileName}}",
+    "uploadDir": "目录: {{dir}}",
+    "reloadCommand": "重载: {{command}}",
+    "authorizeCommand": "授权: {{command}}"
+  }
+}
