@@ -14,6 +14,7 @@ import {
 import { CloudUpload as CloudUploadIcon, CheckCircleOutline as CheckCircleOutlineIcon } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
 import type { YggdrasilProfile, YsmUploadResult } from '../types'
+import { withBasePath } from '../utils/basePath'
 
 interface YsmUploadPanelProps {
   profiles: YggdrasilProfile[]
@@ -59,7 +60,7 @@ export const YsmUploadPanel = ({ profiles }: YsmUploadPanelProps) => {
     setResult(null)
 
     try {
-      const response = await fetch('/api/ysm/upload', {
+      const response = await fetch(withBasePath('/api/ysm/upload'), {
         method: 'POST',
         body: formData,
       })

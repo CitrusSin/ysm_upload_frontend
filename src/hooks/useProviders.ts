@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { OAuthProvider } from '../types'
+import { withBasePath } from '../utils/basePath'
 
 export const useProviders = () => {
   const [providers, setProviders] = useState<OAuthProvider[]>([])
@@ -7,7 +8,7 @@ export const useProviders = () => {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('/api/oauth/providers')
+    fetch(withBasePath('/api/oauth/providers'))
       .then(res => res.json())
       .then(data => {
         setProviders(data.providers || [])
